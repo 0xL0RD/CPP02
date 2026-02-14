@@ -6,7 +6,7 @@
 /*   By: rubsanch <rubsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 09:24:56 by rubsanch          #+#    #+#             */
-/*   Updated: 2026/02/14 10:48:12 by rubsanch         ###   ########.fr       */
+/*   Updated: 2026/02/14 11:35:31 by rubsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ Fixed::Fixed(void) : _fpnb(0)
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(Fixed const &other) : _fpnb(other.getRawBits())
+Fixed::Fixed(Fixed const &other)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	//this->_fpnb = other.getRawBits(); //If you wan exact order from example
+	this->setRawBits(other.getRawBits());
 	return ;
 }
 
