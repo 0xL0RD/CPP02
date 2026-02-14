@@ -6,7 +6,7 @@
 /*   By: rubsanch <rubsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 09:24:56 by rubsanch          #+#    #+#             */
-/*   Updated: 2026/02/14 19:28:04 by rubsanch         ###   ########.fr       */
+/*   Updated: 2026/02/14 19:38:51 by rubsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int main(void)
 	std::cout << a - a << std::endl;
 	std::cout << "------------" << std::endl;
 	std::cout << "b (multiplication): " << std::endl;
-	//Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
 	{
 		Fixed const b( Fixed( 5 ) * Fixed( 2 ) );
 		std::cout << b << std::endl;
@@ -50,7 +49,14 @@ int main(void)
 	std::cout << "b (div): " << std::endl;
 	Fixed const b( Fixed( 5 ) / Fixed( 2 ));
 	std::cout << b << std::endl;
+	/*
 	std::cout << "------------" << std::endl;
+	std::cout << "d (div 0): " << std::endl;
+	Fixed const d( Fixed( 5 ) / Fixed( 0 ));
+	std::cout << b << std::endl;
+	*/
+	std::cout << "------------" << std::endl;
+
 	std::cout << "a: " << a << std::endl;
 	std::cout << "b: " << b << std::endl;
 	std::cout << "max (const) (a, b): " << std::endl;
@@ -68,6 +74,7 @@ int main(void)
 	std::cout << "min (no const) (a, c): " << std::endl;
 	std::cout << Fixed::min( a, c ) << std::endl;
 	std::cout << "------------" << std::endl;
+
 	std::cout << "a: " << a << std::endl;
 	std::cout << "b: " << b << std::endl;
 	std::cout << "c: " << c << std::endl;
