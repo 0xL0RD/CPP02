@@ -6,7 +6,7 @@
 /*   By: rubsanch <rubsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 09:24:56 by rubsanch          #+#    #+#             */
-/*   Updated: 2026/02/14 14:30:04 by rubsanch         ###   ########.fr       */
+/*   Updated: 2026/02/14 16:41:54 by rubsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ Fixed::Fixed(const int nb)
 {
 	std::cout << "Int constructor called" << std::endl;
 	this->setRawBits(nb << _binarypoint);
+}
+
+Fixed::Fixed(const int nb, const bool isRawBytes)
+{
+	std::cout << "Int (isRawBytes) constructor called" << std::endl;
+	if (isRawBytes == false)
+		this->setRawBits(nb << _binarypoint);
+	else
+		this->setRawBits(nb);
 }
 
 Fixed::Fixed(const float nb)
@@ -48,10 +57,102 @@ Fixed& Fixed::operator=(const Fixed &other)
 	return (*this);
 }
 
+bool operator>(Fixed const &other) const
+{
+	return (this->getRawBits() > other->getRawBits());
+}
+
+bool operator<(Fixed const &other) const
+{
+	return (this->getRawBits() < other->getRawBits());
+}
+
+bool operator>=(Fixed const &other) const
+{
+	return (this->getRawBits() >= other->getRawBits());
+}
+
+bool operator<=(Fixed const &other) const
+{
+	return (this->getRawBits() <= other->getRawBits());
+}
+
+bool operator==(Fixed const &other) const
+{
+	return (this->getRawBits() == other->getRawBits());
+}
+
+bool operator!=(Fixed const &other) const
+{
+	return (this->getRawBits() != other->getRawBits());
+}
+
+Fixed	operator+(Fixed const &other)
+{
+	return (Fixed(this->getRawBits() + other.getRawBits()), true);
+}
+
+Fixed	operator-(Fixed const &other)
+{
+	return (Fixed(this->getRawBits() - other.getRawBits()), true);
+}
+
+Fixed	operator*(Fixed const &other)
+{
+	return (Fixed(this->getRawBits() * other.getRawBits()), true);
+}
+
+Fixed	operator/(Fixed const &other)
+{
+	return (Fixed(this->getRawBits() / other.getRawBits()), true);
+}
+
+Fixed&	operator++(void)	//pre increment
+{
+	this->setRawBits(this->getRawBits() + 1);
+	return (this);
+}
+
+Fixed	operator++(int)	//post increment
+{
+	return (Fixed(this->getRawBits() + 1, true));
+}
+
+Fixed&	operator--(void)
+{
+	this->setRawBits(this->getRawBits() - 1);
+	return (this);
+}
+
+Fixed	operator--(int)
+{
+	return (Fixed(this->getRawBits() - 1, true));
+}
+
 Fixed::~Fixed(void)
 {
 	std::cout << "Destructor called" << std::endl;
 	return ;
+}
+
+Fixed&		Fixed::min(Fixed &a, Fixed &b)
+{
+
+}
+
+Fixed const&	Fixed::min(Fixed const &a, Fixed const &b)
+{
+
+}
+
+Fixed&		Fixed::max(Fixed &a, Fixed &b)
+{
+
+}
+
+Fixed const&	Fixed::max(Fixed const &a, Fixed const &b)
+{
+
 }
 
 int		Fixed::getRawBits(void) const
