@@ -6,7 +6,7 @@
 /*   By: rubsanch <rubsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 09:24:56 by rubsanch          #+#    #+#             */
-/*   Updated: 2026/02/14 18:34:50 by rubsanch         ###   ########.fr       */
+/*   Updated: 2026/02/14 19:18:51 by rubsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ Fixed::Fixed(Fixed const &other)
 Fixed& Fixed::operator=(const Fixed &other)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	this->_fpnb = other.getRawBits();
+	if (this != &other)
+		this->_fpnb = other.getRawBits();
 	return (*this);
 }
 
@@ -171,6 +172,7 @@ Fixed::~Fixed(void)
 
 Fixed&		Fixed::min(Fixed &a, Fixed &b)
 {
+	std::cout << "MIN (no const) operator called" << std::endl;
 	if (a < b)
 		return (a);
 	return (b);
@@ -178,6 +180,7 @@ Fixed&		Fixed::min(Fixed &a, Fixed &b)
 
 Fixed const&	Fixed::min(Fixed const &a, Fixed const &b)
 {
+	std::cout << "MIN (const) operator called" << std::endl;
 	if (a < b)
 		return (a);
 	return (b);
@@ -185,6 +188,7 @@ Fixed const&	Fixed::min(Fixed const &a, Fixed const &b)
 
 Fixed&		Fixed::max(Fixed &a, Fixed &b)
 {
+	std::cout << "MAX (no const) operator called" << std::endl;
 	if (a > b)			//TODO: can I use the const version to one line this?
 		return (a);
 	return (b);
@@ -192,6 +196,7 @@ Fixed&		Fixed::max(Fixed &a, Fixed &b)
 
 Fixed const&	Fixed::max(Fixed const &a, Fixed const &b)
 {
+	std::cout << "MAX (const) operator called" << std::endl;
 	if (a > b)
 		return (a);
 	return (b);
