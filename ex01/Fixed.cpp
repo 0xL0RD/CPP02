@@ -6,7 +6,7 @@
 /*   By: rubsanch <rubsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 09:24:56 by rubsanch          #+#    #+#             */
-/*   Updated: 2026/02/14 13:09:50 by rubsanch         ###   ########.fr       */
+/*   Updated: 2026/02/14 14:03:52 by rubsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,16 @@ Fixed::Fixed(const float nb)
 	int	r;
 
 	std::cout << "Float constructor called" << std::endl;
-	r = nb * (1 << _binarypoint);
+	r = (int) roundf(nb * (1 << _binarypoint));
 	this->setRawBits(r);
 }
 
-Fixed::Fixed(Fixed const &other) : _fpnb(other.getRawBits())
+//Fixed::Fixed(Fixed const &other) : _fpnb(other.getRawBits())
+Fixed::Fixed(Fixed const &other)
 {
 	std::cout << "Copy constructor called" << std::endl;
 	//this->_fpnb = other.getRawBits(); //If you wan exact order from example
+	this->setRawBits(other.getRawBits());
 	return ;
 }
 
@@ -68,17 +70,17 @@ void	Fixed::setRawBits(int const raw)
 
 float	Fixed::toFloat(void) const
 {
-	int	r;
+	float	r;
 
-	r = this->getRawBits() / (1 << _binarypoint); //TODO: no idea
-	return ((float) r);
+	r = (float) this->getRawBits() / (1 << _binarypoint); //TODO: no idea
+	return (r);
 }
 
 int		Fixed::toInt(void) const
 {
 	int	r;
 
-	r = this->getRawBits() >> _fpnb;
+	r = this->getRawBits() >> this->_binarypoint;
 	return (r);
 }
 
