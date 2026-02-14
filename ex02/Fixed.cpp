@@ -6,7 +6,7 @@
 /*   By: rubsanch <rubsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 09:24:56 by rubsanch          #+#    #+#             */
-/*   Updated: 2026/02/14 16:41:54 by rubsanch         ###   ########.fr       */
+/*   Updated: 2026/02/14 18:34:50 by rubsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ Fixed::Fixed(const int nb, const bool isRawBytes)
 		this->setRawBits(nb << _binarypoint);
 	else
 		this->setRawBits(nb);
+	//std::cout << "hola: " << this->toFloat() << std::endl;
 }
 
 Fixed::Fixed(const float nb)
@@ -57,76 +58,109 @@ Fixed& Fixed::operator=(const Fixed &other)
 	return (*this);
 }
 
-bool operator>(Fixed const &other) const
+bool	Fixed::operator>(Fixed const &other) const
 {
-	return (this->getRawBits() > other->getRawBits());
+	std::cout << "> operator called" << std::endl;
+	return (this->getRawBits() > other.getRawBits());
 }
 
-bool operator<(Fixed const &other) const
+bool	Fixed::operator<(Fixed const &other) const
 {
-	return (this->getRawBits() < other->getRawBits());
+	std::cout << "< operator called" << std::endl;
+	return (this->getRawBits() < other.getRawBits());
 }
 
-bool operator>=(Fixed const &other) const
+bool	Fixed::operator>=(Fixed const &other) const
 {
-	return (this->getRawBits() >= other->getRawBits());
+	std::cout << ">= operator called" << std::endl;
+	return (this->getRawBits() >= other.getRawBits());
 }
 
-bool operator<=(Fixed const &other) const
+bool	Fixed::operator<=(Fixed const &other) const
 {
-	return (this->getRawBits() <= other->getRawBits());
+	std::cout << "<= operator called" << std::endl;
+	return (this->getRawBits() <= other.getRawBits());
 }
 
-bool operator==(Fixed const &other) const
+bool	Fixed::operator==(Fixed const &other) const
 {
-	return (this->getRawBits() == other->getRawBits());
+	std::cout << "== operator called" << std::endl;
+	return (this->getRawBits() == other.getRawBits());
 }
 
-bool operator!=(Fixed const &other) const
+bool	Fixed::operator!=(Fixed const &other) const
 {
-	return (this->getRawBits() != other->getRawBits());
+	std::cout << "!= operator called" << std::endl;
+	return (this->getRawBits() != other.getRawBits());
 }
 
-Fixed	operator+(Fixed const &other)
+Fixed Fixed::operator+(Fixed const &other)
 {
-	return (Fixed(this->getRawBits() + other.getRawBits()), true);
+	std::cout << "+ operator called" << std::endl;
+	return (Fixed(this->getRawBits() + other.getRawBits(), true));
 }
 
-Fixed	operator-(Fixed const &other)
+Fixed Fixed::operator-(Fixed const &other)
 {
-	return (Fixed(this->getRawBits() - other.getRawBits()), true);
+	std::cout << "- operator called" << std::endl;
+	return (Fixed(this->getRawBits() - other.getRawBits(), true));
 }
 
-Fixed	operator*(Fixed const &other)
+Fixed Fixed::operator*(Fixed const &other)
 {
-	return (Fixed(this->getRawBits() * other.getRawBits()), true);
+	//int	r;
+	//Fixed	out;
+
+	std::cout << "* operator called" << std::endl;
+	//r = (this->getRawBits() * other.getRawBits()) >> this->_binarypoint;
+	//out.setRawBits(r);
+	return (Fixed(
+				(this->getRawBits() * other.getRawBits()) >> this->_binarypoint,
+				true));
+	//return (out);
 }
 
-Fixed	operator/(Fixed const &other)
+Fixed Fixed::operator/(Fixed const &other)
 {
-	return (Fixed(this->getRawBits() / other.getRawBits()), true);
+	std::cout << "/ operator called" << std::endl;
+	return (Fixed(
+				(this->getRawBits() << _binarypoint) / other.getRawBits(),
+				true));
 }
 
-Fixed&	operator++(void)	//pre increment
+Fixed& Fixed::operator++(void)	//pre increment
 {
+	std::cout << "++(pre) operator called" << std::endl;
 	this->setRawBits(this->getRawBits() + 1);
-	return (this);
+	return (*this);
 }
 
-Fixed	operator++(int)	//post increment
+Fixed Fixed::operator++(int)	//post increment
 {
-	return (Fixed(this->getRawBits() + 1, true));
+	int	tmp;
+
+	std::cout << "++(post) operator called" << std::endl;
+	tmp = this->getRawBits();
+	//Fixed(this->getRawBits() + 1, true)
+	this->setRawBits(this->getRawBits() + 1);
+	return (Fixed(tmp, true));
 }
 
-Fixed&	operator--(void)
+Fixed& Fixed::operator--(void)
 {
+	std::cout << "--(pre) operator called" << std::endl;
 	this->setRawBits(this->getRawBits() - 1);
-	return (this);
+	return (*this);
 }
 
-Fixed	operator--(int)
+Fixed Fixed::operator--(int)
 {
-	return (Fixed(this->getRawBits() - 1, true));
+	int	tmp;
+
+	std::cout << "--(post) operator called" << std::endl;
+	tmp = this->getRawBits();
+	this->setRawBits(this->getRawBits() - 1);
+	return (Fixed(tmp, true));
 }
 
 Fixed::~Fixed(void)
@@ -137,22 +171,30 @@ Fixed::~Fixed(void)
 
 Fixed&		Fixed::min(Fixed &a, Fixed &b)
 {
-
+	if (a < b)
+		return (a);
+	return (b);
 }
 
 Fixed const&	Fixed::min(Fixed const &a, Fixed const &b)
 {
-
+	if (a < b)
+		return (a);
+	return (b);
 }
 
 Fixed&		Fixed::max(Fixed &a, Fixed &b)
 {
-
+	if (a > b)			//TODO: can I use the const version to one line this?
+		return (a);
+	return (b);
 }
 
 Fixed const&	Fixed::max(Fixed const &a, Fixed const &b)
 {
-
+	if (a > b)
+		return (a);
+	return (b);
 }
 
 int		Fixed::getRawBits(void) const
