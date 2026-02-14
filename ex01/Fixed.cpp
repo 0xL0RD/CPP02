@@ -6,7 +6,7 @@
 /*   By: rubsanch <rubsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 09:24:56 by rubsanch          #+#    #+#             */
-/*   Updated: 2026/02/14 14:20:47 by rubsanch         ###   ########.fr       */
+/*   Updated: 2026/02/14 14:30:04 by rubsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int		Fixed::toInt(void) const
 	return (r);
 }
 
-std::ostream& operator<<(std::ostream & os, Fixed const &f)
+std::ostream& operator<<(std::ostream &os, Fixed const &f)
 {
 	os << f.toFloat();
 	return (os);
