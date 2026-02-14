@@ -6,7 +6,7 @@
 /*   By: rubsanch <rubsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 09:24:56 by rubsanch          #+#    #+#             */
-/*   Updated: 2026/02/14 12:34:28 by rubsanch         ###   ########.fr       */
+/*   Updated: 2026/02/14 14:24:18 by rubsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ class Fixed
 
 //std::ostream&	std::ostream::operator<<(std::ostream &os, Fixed &f);
 std::ostream& operator<<(std::ostream &os, Fixed const &input);
-
 
 #endif
