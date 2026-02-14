@@ -6,7 +6,7 @@
 /*   By: rubsanch <rubsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 09:24:56 by rubsanch          #+#    #+#             */
-/*   Updated: 2026/02/14 19:18:51 by rubsanch         ###   ########.fr       */
+/*   Updated: 2026/02/14 19:44:16 by rubsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ Fixed::Fixed(const int nb, const bool isRawBytes)
 		this->setRawBits(nb << _binarypoint);
 	else
 		this->setRawBits(nb);
-	//std::cout << "hola: " << this->toFloat() << std::endl;
 }
 
 Fixed::Fixed(const float nb)
@@ -109,16 +108,10 @@ Fixed Fixed::operator-(Fixed const &other)
 
 Fixed Fixed::operator*(Fixed const &other)
 {
-	//int	r;
-	//Fixed	out;
-
 	std::cout << "* operator called" << std::endl;
-	//r = (this->getRawBits() * other.getRawBits()) >> this->_binarypoint;
-	//out.setRawBits(r);
 	return (Fixed(
 				(this->getRawBits() * other.getRawBits()) >> this->_binarypoint,
 				true));
-	//return (out);
 }
 
 Fixed Fixed::operator/(Fixed const &other)
@@ -142,7 +135,6 @@ Fixed Fixed::operator++(int)	//post increment
 
 	std::cout << "++(post) operator called" << std::endl;
 	tmp = this->getRawBits();
-	//Fixed(this->getRawBits() + 1, true)
 	this->setRawBits(this->getRawBits() + 1);
 	return (Fixed(tmp, true));
 }
@@ -189,7 +181,7 @@ Fixed const&	Fixed::min(Fixed const &a, Fixed const &b)
 Fixed&		Fixed::max(Fixed &a, Fixed &b)
 {
 	std::cout << "MAX (no const) operator called" << std::endl;
-	if (a > b)			//TODO: can I use the const version to one line this?
+	if (a > b)
 		return (a);
 	return (b);
 }
@@ -217,7 +209,7 @@ float	Fixed::toFloat(void) const
 {
 	float	r;
 
-	r = (float) this->getRawBits() / (1 << _binarypoint); //TODO: no idea
+	r = (float) this->getRawBits() / (1 << _binarypoint);
 	return (r);
 }
 
