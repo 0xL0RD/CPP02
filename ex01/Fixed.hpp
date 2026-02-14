@@ -6,7 +6,7 @@
 /*   By: rubsanch <rubsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 09:24:56 by rubsanch          #+#    #+#             */
-/*   Updated: 2026/02/14 14:24:18 by rubsanch         ###   ########.fr       */
+/*   Updated: 2026/02/14 19:16:56 by rubsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Fixed
 		Fixed(const int nb);
 		Fixed(const float nb);
 		Fixed(const Fixed &other);
-		Fixed&	operator=(Fixed const &other);
+		Fixed&	operator=(const Fixed &other);
 		~Fixed(void);
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
