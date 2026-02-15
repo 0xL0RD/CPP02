@@ -6,7 +6,7 @@
 /*   By: rubsanch <rubsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 09:24:56 by rubsanch          #+#    #+#             */
-/*   Updated: 2026/02/14 19:25:40 by rubsanch         ###   ########.fr       */
+/*   Updated: 2026/02/15 17:07:35 by rubsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@ int main( void ) {
 	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
 	a = c;
 	std::cout << "now a is " << a.toInt() << " as integer" << std::endl;
+	Fixed const e( -123 );
+	std::cout << "e is " << e << std::endl;
 	return 0;
 }
+
