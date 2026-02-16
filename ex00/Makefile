@@ -1,19 +1,23 @@
 NAME = Canonical
 SRCS = main.cpp			Fixed.cpp
-OBJS = $(SRCS:%.cpp=%.o)
+BUILD = build
+OBJS = $(addprefix $(BUILD)/, $(SRCS:%.cpp=%.o))
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD -MP
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $@
 
-%.o: %.cpp
+$(BUILD):
+	mkdir $@
+
+$(BUILD)/%.o: %.cpp | $(BUILD)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -rf *.o
+	rm -rf $(BUILD)
 
 fclean: clean
 	rm -rf $(NAME)
@@ -24,3 +28,7 @@ run: $(NAME)
 	./$<
 
 .PHONY: all clean fclean re run
+
+.DEFAULT_GOAL = all
+
+-include $(OBJS:%.o=%.d)
