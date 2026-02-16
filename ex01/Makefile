@@ -8,7 +8,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD -MP
 all: $(NAME)
 
 $(NAME): $(BUILD) $(OBJS) 
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $@
 
 $(BUILD):
 	mkdir $@
