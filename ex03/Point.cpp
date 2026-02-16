@@ -6,7 +6,7 @@
 /*   By: rubsanch <rubsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 08:03:11 by rubsanch          #+#    #+#             */
-/*   Updated: 2026/02/16 12:13:25 by rubsanch         ###   ########.fr       */
+/*   Updated: 2026/02/16 14:55:27 by rubsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ Point::Point(void) : _x(Fixed(0)), _y(Fixed(0))
 }
 
 Point::Point(const float x, const float y) : _x(Fixed(x)), _y(Fixed(y))
+{
+	return ;
+}
+Point::Point(const Fixed x, const Fixed y) : _x(x), _y(y)
 {
 	return ;
 }

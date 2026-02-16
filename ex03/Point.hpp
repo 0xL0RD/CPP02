@@ -6,7 +6,7 @@
 /*   By: rubsanch <rubsanch@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 08:03:11 by rubsanch          #+#    #+#             */
-/*   Updated: 2026/02/16 12:10:47 by rubsanch         ###   ########.fr       */
+/*   Updated: 2026/02/16 14:50:29 by rubsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class Point
 		Point(void);
 		Point(const float x, const float y);
 		Point(const Fixed x, const Fixed y);
+		//Point(Fixed x, Fixed y); //TODO: not allowed by subject?
 		Point(const Point &other);
 		Point&	operator=(const Point &other);
 		Point	operator-(const Point &other) const;
